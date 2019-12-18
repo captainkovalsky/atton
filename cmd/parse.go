@@ -72,7 +72,7 @@ to quickly create a Cobra application.`,
 			log.WithFields(log.Fields{
 				"URL":   r.Request.URL,
 				"Error": err.Error(),
-			}).Panic("failed with response")
+			}).Panic("failed with processing response")
 		})
 
 		// Start scraping
