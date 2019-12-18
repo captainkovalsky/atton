@@ -1,0 +1,32 @@
+env:
+  - GO111MODULE=on
+  - GOPROXY=https://gocenter.io
+before:
+  hooks:
+    - go mod tidy
+builds:
+  # You can have multiple builds defined as a yaml list
+  -
+    # ID of the build.
+    # Defaults to the project name.
+    id: "atton"
+
+    # Custom environment variables to be set during the builds.
+    # Default is empty.
+    env:
+      - CGO_ENABLED=0
+
+    # GOOS list to build for.
+    # For more info refer to: https://golang.org/doc/install/source#environment
+    # Defaults are darwin and linux.
+    goos:
+      - darwin
+      - windows
+
+    # Hooks can be used to customize the final binary,
+    # for example, to run generators.
+    # Those fields allow templates.
+    # Default is both hooks empty.
+#    hooks:
+#      pre: rice embed-go
+#      post: ./script.sh

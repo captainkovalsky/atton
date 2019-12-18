@@ -1,9 +1,12 @@
+make:
+	@echo "Default make"
+
 clean:
-	rm -rf publish
-	mkdir -p publish
+	rm -rf dist
+	mkdir -p dist
 
 run:
-	@./publish/atton parse
+	@./dist/atton parse
 
 fmt:
 	go fmt ./...

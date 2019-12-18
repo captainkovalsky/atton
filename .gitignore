@@ -16,6 +16,7 @@
 # vendor/
 
 publish
+dist
 
 # IDE
 .idea
