@@ -16,7 +16,6 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
 	tools "github.com/captainkovalsky/atton/common"
 	"github.com/gocolly/colly"
 	log "github.com/sirupsen/logrus"
@@ -25,7 +24,6 @@ import (
 
 const (
 	InvestmentAccountsTitle = "Investment accounts"
-	InvestmentProfitTitle   = "Investment profit Today"
 	titleSelector           = "h3"
 	totalCountSelector      = "h1"
 	newTodaySelector        = "span"
@@ -63,23 +61,18 @@ to quickly create a Cobra application.`,
 				}
 
 				log.WithFields(log.Fields{
-					"type":          InvestmentAccountsTitle,
-					"site":          "attonbank.com",
-					"title":         title,
 					"totalCount":    totalCount,
 					"newTodayCount": newTodayCount,
-				}).Info("Found Info Block")
-			}
-
-			title = e.ChildText("h4")
-			if title == InvestmentProfitTitle {
-				log.Info("good investment counter")
+				}).Info("register information")
 			}
 		})
 
 		// Set error handler
 		c.OnError(func(r *colly.Response, err error) {
-			fmt.Println("Request URL:", r.Request.URL, "failed with response:", r, "\nError:", err)
+			log.WithFields(log.Fields{
+				"URL":   r.Request.URL,
+				"Error": err.Error(),
+			}).Panic("failed with response")
 		})
 
 		// Start scraping
